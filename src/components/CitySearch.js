@@ -40,10 +40,10 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   };
 
   return (
-    <div id="city-search">
+    <div>
       <p>Search for a City:</p>
-
       <input
+        id="city-search"
         type="text"
         className="city"
         placeholder="City"

@@ -1,8 +1,6 @@
-import React from "react";
-import React, { useState } from "react";
+import React  from "react";
 
 const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
-  // const [eventsNumber, setEventsNumber] = useState("32");
 
   const handleInputChanged = (event) => {
     const value = event.target.value;

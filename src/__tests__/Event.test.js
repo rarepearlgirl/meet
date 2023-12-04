@@ -1,4 +1,5 @@
 // src/__tests__/App.test.js
+
 import React from "react";
 import { getDefaultNormalizer, render } from "@testing-library/react";
 import "../mock-data";
@@ -26,6 +27,15 @@ describe("<Event/> component", () => {
     ).toBeInTheDocument();
   });
 
+  // test("has an element with created key (events start time)", () => {
+  //   console.log("allEvents[0].created", allEvents[0].created);
+
+  //   //why is it returning null???
+  //   expect(
+  //     EventComponent.queryByText(allEvents[0].created)
+  //   ).toBeInTheDocument();
+  // });
+
   test("has an element with location key (events city)", () => {
     expect(
       EventComponent.queryByText(allEvents[0].location)
@@ -39,6 +49,14 @@ describe("<Event/> component", () => {
   test("by default, events details section should be hidden", () => {
     console.log("CONSOLE LOGGING:", allEvents[0].description);
 
+    // expect(
+    //   EventComponent.container.que(allEvents[0].description, {
+    //     normalizer: getDefaultNormalizer({
+    //       trim: false,
+    //       collapseWhitespace: false,
+    //     }),
+    //   })
+    // ).not.toBeVisible();
     expect(
       EventComponent.container.querySelector(".detailsOpened")
     ).not.toBeInTheDocument();

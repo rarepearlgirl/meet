@@ -1,71 +1,60 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { getEvents } from "../api";
+import mockData from "../mock-data";
 
-const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+const Event = ({ event }) => {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
-  useEffect(() => {
-    setSuggestions(allLocations);
-  }, [`${allLocations}`]);
+  const isoDateString = event.created;
+  const isoDate = new Date(isoDateString);
 
-  const handleInputChanged = (event) => {
-    const value = event.target.value;
-    const filteredLocations = allLocations
-      ? allLocations.filter((location) => {
-        return location.toUpperCase().indexOf(value.toUpperCase()) > -1;
-      })
-      : [];
-    setQuery(value);
-    setSuggestions(filteredLocations);
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const readableDate = isoDate.toLocaleString(undefined, options);
 
-    let infoText;
-    if (filteredLocations.length === 0) {
-      infoText =
-        "We can not find the city you are looking for. Please try another city";
-    } else {
-      infoText = "";
-    }
-    setInfoAlert(infoText);
-  };
-
-  const handleItemClicked = (event) => {
-    const value = event.target.textContent;
-    setQuery(value);
-    setShowSuggestions(false);
-    setCurrentCity(value);
-    setInfoAlert("");
-  };
-
+  // console.log(readableDate);
   return (
-    <div id="city-search">
-      <p>Search for a City:</p>
+    <li className="event">
+      <div className="event-title">{event.summary}</div>
+      <div className="event-infos">
+        <div>{readableDate}</div>
+        <div>{event.location}</div>
+      </div>
+      {/* details are hidden bu default */}
+      {isDetailsOpen ? (
+        <details open={true} className="detailsOpened">
+          <summary> </summary>
+          <p> {event.description} </p>
+        </details>
+      ) : (
+        <details open={false} className="detailsClosed">
+          <summary> </summary>
+          <p> {event.description}</p>
+        </details>
+      )}
 
-      <input
-        type="text"
-        className="city"
-        placeholder="City"
-        value={query}
-        onFocus={() => setShowSuggestions(true)}
-        onChange={handleInputChanged}
-      />
-      {showSuggestions ? (
-        <ul className="suggestions">
-          {suggestions.map((suggestion) => {
-            return (
-              <li onClick={handleItemClicked} key={suggestion}>
-                {suggestion}
-              </li>
-            );
-          })}
-          <li key="See all cities" onClick={handleItemClicked}>
-            <b>See all cities</b>
-          </li>
-        </ul>
-      ) : null}
-    </div>
+      <div className="details-btn">
+        {isDetailsOpen ? (
+          <button
+            className="hide-details"
+            onClick={() => {
+              setIsDetailsOpen(false);
+            }}
+          >
+            hide details
+          </button>
+        ) : (
+          <button
+            className="show-details"
+            onClick={() => {
+              setIsDetailsOpen(true);
+            }}
+          >
+            show details
+          </button>
+        )}
+      </div>
+    </li>
   );
 };
 
-export default CitySearch;
+export default Event;

@@ -1,5 +1,4 @@
 // import "./style.css";
-import React from "react";
 import React, { useCallback, useEffect, useState } from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
@@ -51,7 +50,7 @@ const EventGenresChart = ({ events }) => {
       <text
         x={x}
         y={y}
-        fill="#8884d8"
+        fill="#5c91e0"
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
       >
@@ -59,7 +58,7 @@ const EventGenresChart = ({ events }) => {
       </text>
     ) : null;
   };
-  const colors = ["#DDC4DD", "#9F7CCB", "#A997DF", "#4F517D", "#1E1A3B"];
+  const colors = ["#5c91e0", "#212dcf", "#4F517D", "#1E1A3B"];
   return (
     <div>
       <p className="graph-title">Type of Event</p>
@@ -69,7 +68,7 @@ const EventGenresChart = ({ events }) => {
           <Pie
             data={data}
             dataKey="value"
-            fill="#9F7CCB"
+            fill="#212dcf"
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={130}
