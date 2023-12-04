@@ -21,20 +21,20 @@ describe("<Event/> component", () => {
   });
 
   test("has an element with summary key (events title)", () => {
-    console.log("CONSOLE LOGGING:", allEvents[0]);
     expect(
       EventComponent.queryByText(allEvents[0].summary)
     ).toBeInTheDocument();
   });
 
-  // test("has an element with created key (events start time)", () => {
-  //   console.log("allEvents[0].created", allEvents[0].created);
+  test("has an element with created key (events start time)", () => {
+    const isoDate = new Date(allEvents[0].created);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    const readableDate = isoDate.toLocaleString(undefined, options);
 
-  //   //why is it returning null???
-  //   expect(
-  //     EventComponent.queryByText(allEvents[0].created)
-  //   ).toBeInTheDocument();
-  // });
+    expect(
+      EventComponent.queryByText(readableDate)
+    ).toBeInTheDocument();
+  });
 
   test("has an element with location key (events city)", () => {
     expect(
@@ -47,16 +47,6 @@ describe("<Event/> component", () => {
   });
 
   test("by default, events details section should be hidden", () => {
-    console.log("CONSOLE LOGGING:", allEvents[0].description);
-
-    // expect(
-    //   EventComponent.container.que(allEvents[0].description, {
-    //     normalizer: getDefaultNormalizer({
-    //       trim: false,
-    //       collapseWhitespace: false,
-    //     }),
-    //   })
-    // ).not.toBeVisible();
     expect(
       EventComponent.container.querySelector(".detailsOpened")
     ).not.toBeInTheDocument();

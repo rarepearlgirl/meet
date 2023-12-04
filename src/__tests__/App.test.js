@@ -32,13 +32,14 @@ describe("<App /> integration", () => {
     const user = userEvent.setup();
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild;
-
     const CitySearchDOM = AppDOM.querySelector("#city-search");
-    const CitySearchInput = within(CitySearchDOM).queryByRole("textbox");
 
-    await user.type(CitySearchInput, "Berlin");
+    await user?.type(CitySearchDOM, "Berlin");
+    const Suggestions = AppDOM.querySelector(".suggestions");
+
     const berlinSuggestionItem =
-      within(CitySearchDOM).queryByText("Berlin, Germany");
+      within(Suggestions).queryByText("Berlin, Germany");
+
     await user.click(berlinSuggestionItem);
 
     const EventListDOM = AppDOM.querySelector("#event-list");

@@ -11,7 +11,6 @@ describe("<CitySearch/> component", () => {
     CitySearchComponent = render(
       <CitySearch
         allLocations={[]}
-        setCurrentCity={() => { }}
         setInfoAlert={() => { }}
       />
     );
@@ -110,16 +109,17 @@ describe("<CitySearch /> integration", () => {
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild;
 
-    const CitySearchDOM = AppDOM.querySelector("#city-search");
-    const cityTextBox = within(CitySearchDOM).queryByRole("textbox");
-    await user.click(cityTextBox);
+    const CitySearchDOM = AppDOM.querySelector('#city-search');
+    await user.click(CitySearchDOM);
 
     const allEvents = await getEvents();
     const allLocations = extractLocations(allEvents);
+    const Suggestions = AppDOM.querySelector(".suggestions");
 
     await waitFor(() => {
       const suggestionListItems =
-        within(CitySearchDOM).queryAllByRole("listitem");
+        within(Suggestions).queryAllByRole("listitem");
+      console.log(222222, suggestionListItems.length, allLocations.length + 1);
       expect(suggestionListItems.length).toBe(allLocations.length + 1);
     });
   });

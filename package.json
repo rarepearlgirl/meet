@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://rarepearlgirl.github.io/meet",
   "dependencies": {
-   "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.5.1",
     "atatus-spa": "^4.6.0",
@@ -53,6 +53,9 @@
     ]
   },
   "devDependencies": {
+    "@types/testing-library__dom": "^7.5.0",
+    "@types/testing-library__react": "^10.2.0",
+    "eslint-plugin-testing-library": "^6.2.0",
     "gh-pages": "^6.0.0",
     "jest-cucumber": "^3.0.1",
     "puppeteer": "^18.1.0"

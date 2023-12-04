@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react";
-import App from "../App";
+// import App from "../App";
 import NumberOfEvents from "../components/NumberOfEvents";
 import userEvent from "@testing-library/user-event";
-import CitySearch from "../components/CitySearch";
+// import CitySearch from "../components/CitySearch";
 
 describe("<NumberOfEvents /> component", () => {
   //
@@ -23,7 +23,7 @@ describe("<NumberOfEvents /> component", () => {
   });
 
   //
-  test("number of events is 32 by default", () => {
+  test("number of events is 32", () => {
     const textBox = NumberOfEventsComponent.queryByRole("textbox");
 
     expect(textBox.value).toBe("32");

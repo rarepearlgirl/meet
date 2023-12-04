@@ -1,12 +1,14 @@
 import { render, within, waitFor } from "@testing-library/react";
+import { queryByRole, getAllByRole } from "@testing-library/dom";
 import { getEvents } from "../api";
 import EventList from "../components/EventList";
 import App from "../App";
-// import CitySearch from "../components/CitySearch";
+// import { queryByRole, getAllByRole } from "@testing-library/dom";
+
 describe("<EventList /> component", () => {
   let EventListComponent;
   beforeEach(() => {
-    EventListComponent = render(<EventList />);
+    EventListComponent = render(<EventList events = {[]}/>);
   });
 
   test('has an element with "list" role', () => {

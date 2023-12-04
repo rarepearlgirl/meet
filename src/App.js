@@ -36,7 +36,7 @@ const App = () => {
     }
     fetchData();
   }, [currentCity, currentNOE]);
-    
+
   return (
     <div className="App">
       <div className="alerts-container">
