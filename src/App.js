@@ -24,8 +24,12 @@ const App = () => {
       currentCity === "See all cities"
         ? allEvents
         : allEvents.filter((event) => event.location === currentCity);
+
     setEvents(filteredEvents.slice(0, currentNOE));
-    setAllLocations(extractLocations(allEvents));
+    const allLocations = extractLocations(allEvents);
+   setAllLocations(allLocations);
+
+    
   };
 
   useEffect(() => {

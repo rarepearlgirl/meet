@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { getEvents } from "../api";
-import mockData from "../mock-data";
+import PropTypes from "prop-types";
 
 const Event = ({ event }) => {
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-
   const isoDateString = event.created;
   const isoDate = new Date(isoDateString);
 
   const options = { year: "numeric", month: "long", day: "numeric" };
   const readableDate = isoDate.toLocaleString(undefined, options);
 
-  // console.log(readableDate);
   return (
     <li className="event">
       <div className="event-title">{event.summary}</div>
@@ -57,4 +54,13 @@ const Event = ({ event }) => {
   );
 };
 
+Event.propTypes = {
+  event: PropTypes.shape({
+    summary: PropTypes.string.isRequired,
+    created: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired
+};
 export default Event;
+

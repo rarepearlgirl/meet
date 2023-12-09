@@ -69,3 +69,4 @@ describe("<Event/> component", () => {
     expect(descriptionSection).not.toBeVisible();
   });
 });
+
