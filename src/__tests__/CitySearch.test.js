@@ -119,7 +119,6 @@ describe("<CitySearch /> integration", () => {
     await waitFor(() => {
       const suggestionListItems =
         within(Suggestions).queryAllByRole("listitem");
-      console.log(222222, suggestionListItems.length, allLocations.length + 1);
       expect(suggestionListItems.length).toBe(allLocations.length + 1);
     });
   });
