@@ -32,9 +32,9 @@ defineFeature(feature, (test) => {
   });
 
   // Scenario 2
-  test('User can change the number of events displayed.', ({
+  test('User can change the number of events displayed', ({
     given,
-    when,
+    when, 
     then,
   }) => {
     let AppComponent;
@@ -50,14 +50,14 @@ defineFeature(feature, (test) => {
     when(
       'the user chooses a specific number',
       async () => {
-        const button = AppComponent.queryByTestId('numberOfEventsInput');
+        const button = AppComponent.queryByTestId('event-number-imput');
 
         await userEvent.type(button, '{backspace}{backspace}10');
       }
     );
 
     then(
-      'the user should be able see that many events displayed, i.e., the user is able to change the number of events displayed.',
+      'the user should be able see that many events displayed, i.e., the user is able to change the number of events displayed',
       () => {
         const AppDOM = AppComponent.container.firstChild;
         const eventList = within(AppDOM).queryAllByRole('listitem');

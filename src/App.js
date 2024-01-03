@@ -4,7 +4,7 @@ import './App.css';
 import CitySearch from "./components/CitySearch";
 import NumberOfEvents from "./components/NumberOfEvents";
 import { useEffect, useState } from "react";
-import { ErrorAlert, InfoAlert } from "./components/Alert";
+import { ErrorAlert, InfoAlert, WarningAlert } from "./components/Alert";
 import CityEventsChart from "./components/CityEventsChart";
 import EventGenresChart from "./components/EventGenresChart";
 import { extractLocations, getEvents } from "./api";
@@ -16,6 +16,7 @@ const App = () => {
     const [currentCity, setCurrentCity] = useState("See all cities");
     const [infoAlert, setInfoAlert] = useState("");
     const [errorAlert, setErrorAlert] = useState("");
+    const [warningAlert, setWarningAlert] = useState("");
 
   const fetchData = async () => {
     const allEvents = await getEvents();
@@ -32,11 +33,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    // if (navigator.onLine) {
-    //   setWarningAlert("");
-    // } else {
-    //   // setWarningAlert("you are currently in offline mode");
-    // }
+    if (navigator.onLine) {
+      setWarningAlert("");
+    } else {
+      setWarningAlert("you are currently in offline mode");
+    }
     fetchData();
   }, [currentCity, currentNOE]);
 
@@ -45,7 +46,7 @@ const App = () => {
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
-        {/* {warningAlert.length ? <WarningAlert text={warningAlert} /> : null} */}
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
       <div className="title-box">
         <p className="title">Meet App</p>
